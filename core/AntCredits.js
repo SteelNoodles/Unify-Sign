@@ -218,11 +218,15 @@ function CreditRunner () {
   }
 
   this.doBrowseTask = function () {
+    let startY = config.device_height - config.device_height * 0.15
+    let endY = startY - config.device_height * 0.3
+
     let browser15 = widgetUtils.widgetGetOne('逛15秒赚3积分')
-    if (widgetUtils.widgetCheck('.*点击或滑动以下内容.*', 3000) && this.displayButtonAndClick(browser15, '15秒任务')) {
+    /* 更改浏览积分内容 */
+    if (widgetUtils.widgetCheck('.*滑动浏览以下内容.*', 3000) && this.displayButtonAndClick(browser15, '15秒任务')) {
       sleep(1000)
       let limit = 16
-      while (limit-- > 0 && widgetUtils.widgetCheck('.*点击或滑动以下内容.*', 3000)) {
+      while (limit-- > 0 && widgetUtils.widgetCheck('.*滑动浏览以下内容.*', 3000)) {
         FloatyInstance.setFloatyText('等待' + limit + '秒')
         automator.gestureDown(startY, endY)
         sleep(1000)
